@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use khipu-null, please cite it as below."
+title: "khipu-null: structure-preserving permutation tests for khipu pattern matching"
+authors:
+  - name: "Crafter Research"
+  - family-names: "Hugo Quispe"
+    given-names: "Railly"
+version: 0.1.0
+date-released: 2026-11-19
+repository-code: "https://github.com/crafter-research/khipu-null"
+license: MIT
+type: software

@@ -1,0 +1,23 @@
+[project]
+name = "khipu-null"
+version = "0.1.0"
+description = "Rank khipus against a reference pattern and test whether the match is chance, with structure-preserving permutation nulls."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [{ name = "Crafter Research" }]
+dependencies = ["numpy>=1.26", "pandas>=2.1", "pyyaml>=6.0"]
+
+[project.scripts]
+khipu-null = "khipu_null.cli:main"
+
+[project.urls]
+Homepage = "https://crafter.ing/research/khipu-colour-legend"
+Repository = "https://github.com/crafter-research/khipu-null"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

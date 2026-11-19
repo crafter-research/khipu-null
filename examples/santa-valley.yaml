@@ -1,0 +1,15 @@
+# Sanity check, not a discovery: a pattern written from the Santa Valley khipus
+# (Medrano and Urton 2018; Urton 2017, ch. 12). The tool should rank them near the top.
+name: santa-valley-six-cord-tribute
+level: 1            # pendants
+min_cords: 30
+features:
+  - type: group_size        # colour bands made of whole groups of six cords
+    size: 6
+  - type: first_cord_range  # the first cord of each group of six records 0 to 13 (pesos)
+    size: 6
+    min: 0
+    max: 13
+null:
+  draws: auto
+  seed: 0

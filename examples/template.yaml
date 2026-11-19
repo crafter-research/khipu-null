@@ -1,0 +1,27 @@
+# Template: describe your reference model as features.
+# Keep only the features your model actually predicts. Each tested feature has its own null.
+name: my-reference-model
+level: 1              # 1 = pendants, 2 = subsidiaries
+min_cords: 20         # skip khipus with fewer cords at this level
+features:
+  - type: group_size          # untested: structure only
+    size: 6                   # groups made of whole units of 6 cords
+  - type: first_cord_range    # tested: first cords of runs vs cords at random (values within_khipu)
+    size: 6
+    min: 0
+    max: 13
+  - type: group_sum           # tested: the sum relation, keeping each slot's values (within_slot)
+    sum_position: first       # or last
+    size: 6                   # optional: test runs of 6 instead of whole groups
+  - type: color_repeat        # tested: repeat survives rotating colours along the khipu (rotate)
+    period: 3
+  - type: attachment_split    # tested: run-first cords tied with this code more than at random
+    size: 6
+    code: V
+  - type: value_range         # untested: whole-khipu distribution
+    min: 0
+    max: 99
+    weight: 0.5               # optional weight in the combined score (default 1)
+null:
+  draws: auto                 # enough draws for the top-k to reach q <= 0.05 if it beats every draw
+  seed: 0
