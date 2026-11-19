@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2f5d4a"></a>
+  <a href="https://pypi.org/project/khipu-null/"><img alt="PyPI" src="https://img.shields.io/pypi/v/khipu-null?color=2f5d4a"></a>
   <img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11%2B-2f5d4a">
 </p>
 
@@ -25,16 +26,16 @@ Developed by [Crafter Research](https://crafter.ing) from the null designs valid
 Requires [uv](https://docs.astral.sh/uv/).
 
 ```bash
-uvx --from git+https://github.com/crafter-research/khipu-null khipu-null --help
+uvx khipu-null --help
 ```
 
 Try it on the public Open Khipu Repository:
 
 ```bash
 curl -sL -o khipu.db https://raw.githubusercontent.com/khipulab/open-khipu-repository/v2.1.0/data/khipu.db
-uvx --from git+https://github.com/crafter-research/khipu-null khipu-null import-okr khipu.db -o okr.csv --errata confirmed
+uvx khipu-null import-okr khipu.db -o okr.csv --errata confirmed
 curl -sLO https://raw.githubusercontent.com/crafter-research/khipu-null/main/examples/santa-valley.yaml
-uvx --from git+https://github.com/crafter-research/khipu-null khipu-null rank okr.csv santa-valley.yaml -o out --top 6
+uvx khipu-null rank okr.csv santa-valley.yaml -o out --top 6
 ```
 
 `out/` gets `report.md`, `ranking.csv` and `summary.json`.
