@@ -22,9 +22,10 @@ import pandas as pd
 
 REQUIRED = ["khipu_id", "cord_id", "group_id", "position", "level", "color", "value"]
 
-# OKR v2.1.0 records tens-place single knots as hundreds on these khipus. Only KH0326 is
-# confirmed against an outside source (Urton 2017, Appendix B); see the khipu repository.
-OKR_TENS_AS_HUNDREDS = {"KH0326": "confirmed", "KH0472": "kfg-only", "KH0401": "kfg-only"}
+# OKR v2.1.0 and the Khipu Field Guide disagree on the decimal place of single knots on these
+# khipus (OKR 100, Field Guide 10). The errata option applies the Field Guide reading. KH0326 is
+# supported by Urton (2017, Appendix B); KH0472 only by the Field Guide. Not a confirmed OKR error.
+OKR_TENS_AS_HUNDREDS = {"KH0326": "urton-appendix", "KH0472": "kfg-only"}
 
 _SEG = re.compile(r"([^/()]+)\(([\d.]+)-([\d.]+)\)")
 
@@ -65,8 +66,9 @@ def _shift_tens(v: float) -> float:
 def import_okr(db: str | Path, errata: str = "none") -> pd.DataFrame:
     """Build a corpus from the Open Khipu Repository SQLite file (v2.1.0).
 
-    errata: "none" keeps OKR values; "confirmed" fixes KH0326 only; "all" also fixes the
-    two khipus checked only against the Khipu Field Guide.
+    errata: "none" keeps OKR values; "confirmed" applies the Field Guide reading to KH0326 only;
+    "all" also applies it to KH0472. Cords with two single-knot clusters (KH0326 p100, p106)
+    are not fully corrected by this rule.
     """
     con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
     cords = pd.read_sql(

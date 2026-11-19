@@ -86,7 +86,7 @@ Example on the OKR (v2.1.0, KH0326 errata fixed), with a pattern written from th
 
 ## Data notes
 
-`import-okr --errata confirmed` fixes KH0326, where OKR v2.1.0 records tens-place single knots as hundreds (checked against Urton 2017, Appendix B). `--errata all` also fixes KH0472 and KH0401, which were only checked against the Khipu Field Guide. Details: [audit-okr-kfg.md](https://github.com/crafter-research/khipu/blob/main/notes/audit-okr-kfg.md).
+OKR v2.1.0 and the Khipu Field Guide give single knots a different decimal place on KH0326 and KH0472 (OKR 100, Field Guide 10). `import-okr --errata confirmed` applies the Field Guide reading to KH0326, which Urton (2017, Appendix B) supports; `--errata all` also applies it to KH0472. This is an open discrepancy, not a confirmed error in OKR. Details: [audit-okr-kfg.md](https://github.com/crafter-research/khipu/blob/main/notes/audit-okr-kfg.md).
 
 ## Citation
 

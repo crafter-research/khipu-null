@@ -58,7 +58,7 @@ def main(argv: list[str] | None = None) -> int:
     imp.add_argument("db")
     imp.add_argument("-o", "--out", default="corpus.csv")
     imp.add_argument("--errata", choices=["none", "confirmed", "all"], default="none",
-                     help="fix OKR tens-as-hundreds coding: confirmed = KH0326 only; all = also KH0472, KH0401")
+                     help="apply the Khipu Field Guide decimal reading where it disagrees with OKR: confirmed = KH0326; all = also KH0472")
 
     rk = sub.add_parser("rank", help="rank khipus against a pattern and test against the null")
     rk.add_argument("corpus")
