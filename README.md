@@ -1,14 +1,26 @@
-# khipu-null
+<p align="center">
+  <a href="https://crafter.ing"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/crafter-glyph-dark.svg">
+    <img src="assets/crafter-glyph-light.svg" alt="Crafter Research" width="72">
+  </picture></a>
+</p>
 
-Rank khipus against a reference pattern and test whether the match is chance.
+<h1 align="center">khipu-null</h1>
+
+<p align="center">Rank khipus against a reference pattern and test whether the match is chance.</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2f5d4a"></a>
+  <img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11%2B-2f5d4a">
+</p>
 
 You describe a pattern (group sizes, which cords hold totals, colour repeats, attachment, value ranges). khipu-null scores every khipu in a corpus, ranks them, and compares each score against null versions of the same khipu where only the field that feature reads is permuted. Groups, positions and levels never move.
 
 It answers three questions directly. Which khipus match the pattern? Which top k are the best candidates, and is that top k better than what you would pick by chance from the same corpus? Is any single match unlikely to be a coincidence, after correcting for testing hundreds of khipus?
 
-Built by [Crafter Research](https://crafter.ing) from the methods in [our khipu research log](https://crafter.ing/research/khipu-colour-legend), including the mistakes that taught us which nulls lie.
+Developed by [Crafter Research](https://crafter.ing) from the null designs validated in the [khipu colour and number analyses](https://crafter.ing/research/khipu-colour-legend).
 
-## Install and run
+## Quickstart
 
 Requires [uv](https://docs.astral.sh/uv/).
 
@@ -27,7 +39,7 @@ uvx --from git+https://github.com/crafter-research/khipu-null khipu-null rank ok
 
 `out/` gets `report.md`, `ranking.csv` and `summary.json`.
 
-## Your own corpus
+## Input format
 
 Any CSV with one row per cord works:
 
@@ -42,7 +54,7 @@ Any CSV with one row per cord works:
 | value | decoded knot value, empty if no knots |
 | attachment | optional, recto/verso code |
 
-## Patterns
+## Patterns and nulls
 
 Start from `examples/template.yaml`. Keep only the features your model predicts.
 
@@ -65,19 +77,21 @@ A feature spec can override its null with `null: within_khipu | within_group | w
 
 Example on the OKR (v2.1.0, KH0326 errata fixed), with a pattern written from the Santa Valley khipus. This is a sanity check, since the pattern comes from those khipus. Five of the six Santa khipus rank in the top 6 of 328; the top-6 mean is 0.994 against a null of [0.954, 0.986], p = 0.001; no single khipu reaches q <= 0.05.
 
-## What this does not prove
+## Limits
 
 - A low p says the match is unlikely under that null, given each khipu's structure. It does not say what a khipu means.
 - Structural features cannot be tested by permuting a khipu. They rank, they do not prove.
 - Shuffling colours cord by cord breaks colour bands and makes chance matches look rare. That is why colours rotate.
-- Shuffling values across the whole khipu ignores position effects, such as larger first cords. That is why `group_sum` shuffles within slots. Both lessons came from tests we had to retract.
+- Shuffling values across the whole khipu ignores position effects, such as larger first cords. That is why `group_sum` shuffles within slots.
 
 ## Data notes
 
-`import-okr --errata confirmed` fixes KH0326, where OKR v2.1.0 records tens-place single knots as hundreds (checked against Urton 2017, Appendix B). `--errata all` also fixes KH0472 and KH0401, which were only checked against the Khipu Field Guide. Details: [AUDIT-OKR-KFG.md](https://github.com/crafter-research/khipu/blob/main/AUDIT-OKR-KFG.md).
+`import-okr --errata confirmed` fixes KH0326, where OKR v2.1.0 records tens-place single knots as hundreds (checked against Urton 2017, Appendix B). `--errata all` also fixes KH0472 and KH0401, which were only checked against the Khipu Field Guide. Details: [audit-okr-kfg.md](https://github.com/crafter-research/khipu/blob/main/notes/audit-okr-kfg.md).
 
-## Cite
+## Citation
 
 If you use khipu-null, please cite it (GitHub's "Cite this repository" button reads `CITATION.cff`): Crafter Research (2026), khipu-null, https://github.com/crafter-research/khipu-null
+
+## License
 
 Code: MIT. Documentation and examples: CC BY 4.0.
