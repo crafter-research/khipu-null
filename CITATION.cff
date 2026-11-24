@@ -5,8 +5,15 @@ authors:
   - name: "Crafter Research"
   - family-names: "Hugo Quispe"
     given-names: "Railly"
-version: 0.1.0
-date-released: 2026-11-19
+version: 0.1.1
+date-released: 2026-11-24
 repository-code: "https://github.com/crafter-research/khipu-null"
 license: MIT
+keywords:
+  - khipu
+  - quipu
+  - permutation test
+  - Inka
+  - Peru
+  - digital humanities
 type: software

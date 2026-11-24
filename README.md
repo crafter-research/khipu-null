@@ -7,7 +7,7 @@
 
 <h1 align="center">khipu-null</h1>
 
-<p align="center">Rank khipus against a reference pattern and test whether the match is chance.</p>
+<p align="center">Rank khipus (quipus) against a reference pattern and test whether the match is chance.</p>
 
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2f5d4a"></a>
@@ -77,6 +77,43 @@ A feature spec can override its null with `null: within_khipu | within_group | w
 - `draws: auto` uses enough draws that a top-k khipu could reach q <= 0.05 if it beat every draw. With fewer draws, no khipu can be significant across a large corpus.
 
 Example on the OKR (v2.1.0, KH0326 errata fixed), with a pattern written from the Santa Valley khipus. This is a sanity check, since the pattern comes from those khipus. Five of the six Santa khipus rank in the top 6 of 328; the top-6 mean is 0.994 against a null of [0.954, 0.986], p = 0.001; no single khipu reaches q <= 0.05.
+
+## Three questions
+
+| Question | khipu-null |
+|---|---|
+| Which khipus (quipus) match a model? | Score per khipu for the features in your pattern |
+| Which five best represent it? | `--top 5` and the top-k test against null versions of every khipu |
+| Regularity or coincidence? | Permutation p and Benjamini-Hochberg q per khipu |
+
+## Spanish-column CSVs
+
+Some exports of OKR 2.1.0 use Spanish column names, one row per pendant cord. Map them to the input format:
+
+| Spanish column | khipu-null column |
+|---|---|
+| codigo_kh | khipu_id |
+| cuerda_uid | cord_id |
+| grupo_uid | group_id |
+| posicion | position |
+| nivel | level |
+| color | color |
+| valor | value |
+
+```bash
+uv run --with pandas python -c "
+import pandas as pd
+d = pd.read_csv('quipus.csv', encoding='utf-8-sig', dtype=str)
+cols = {'codigo_kh': 'khipu_id', 'cuerda_uid': 'cord_id', 'grupo_uid': 'group_id',
+        'posicion': 'position', 'nivel': 'level', 'color': 'color', 'valor': 'value'}
+d[list(cols)].rename(columns=cols).to_csv('cords.csv', index=False)
+"
+uvx khipu-null rank cords.csv my-pattern.yaml -o out --top 5
+```
+
+Empty `valor` stays empty, so a cord without knots is never read as zero. Start your pattern from `examples/template.yaml`.
+
+En español: khipu-null dice qué quipus son compatibles con un modelo, elige los cinco mejores candidatos con una prueba top-k y muestra si una correspondencia es una regularidad o una coincidencia, con un p de permutación y un q por quipu.
 
 ## Limits
 

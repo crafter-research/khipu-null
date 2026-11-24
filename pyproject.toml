@@ -1,11 +1,20 @@
 [project]
 name = "khipu-null"
-version = "0.1.0"
+version = "0.1.1"
 description = "Rank khipus against a reference pattern and test whether the match is chance, with structure-preserving permutation nulls."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
 authors = [{ name = "Crafter Research" }]
+keywords = ["khipu", "quipu", "kipu", "inka", "inca", "andes", "peru", "andean", "decipherment", "permutation-test", "null-model", "digital-humanities", "archaeology"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Sociology :: History",
+    "Environment :: Console",
+]
 dependencies = ["numpy>=1.26", "pandas>=2.1", "pyyaml>=6.0"]
 
 [project.scripts]
@@ -14,6 +23,8 @@ khipu-null = "khipu_null.cli:main"
 [project.urls]
 Homepage = "https://crafter.ing/research/khipu-colour-legend"
 Repository = "https://github.com/crafter-research/khipu-null"
+Documentation = "https://github.com/crafter-research/khipu-null#readme"
+Research = "https://crafter.ing/es/research/khipu-colour-legend"
 
 [dependency-groups]
 dev = ["pytest>=8"]
