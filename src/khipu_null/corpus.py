@@ -74,13 +74,15 @@ def import_okr(db: str | Path, errata: str = "none") -> pd.DataFrame:
     cords = pd.read_sql(
         """
         select m.OKR_NUM khipu_id, c.CORD_ID cord_id, c.CLUSTER_ID group_id, c.CORD_ORDINAL position,
-               c.CORD_LEVEL level, c.ATTACHMENT_TYPE attachment,
-               (select sum(k.knot_value_type) from knot k where k.CORD_ID = c.CORD_ID) value,
-               (select count(*) from knot k where k.CORD_ID = c.CORD_ID) n_knots
+               c.CORD_LEVEL level, c.ATTACHMENT_TYPE attachment, k.value, k.n_knots
         from cord c join khipu_main m on m.KHIPU_ID = c.KHIPU_ID
+        left join (
+            select CORD_ID, sum(knot_value_type) value, count(*) n_knots from knot group by CORD_ID
+        ) k on k.CORD_ID = c.CORD_ID
         """,
         con,
     )
+    cords["n_knots"] = cords["n_knots"].fillna(0)
     colors = pd.read_sql(
         "select rowid rid, color_id, CORD_ID cord_id, FULL_COLOR color from ascher_cord_color", con
     )

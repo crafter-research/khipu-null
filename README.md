@@ -40,6 +40,12 @@ uvx khipu-null rank okr.csv santa-valley.yaml -o out --top 6
 
 `out/` gets `report.md`, `ranking.csv` and `summary.json`.
 
+## Notebook
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/crafter-research/khipu-null/blob/main/examples/quipu-analysis.ipynb)
+
+[`examples/quipu-analysis.ipynb`](examples/quipu-analysis.ipynb), in Spanish: quipu analysis in Python from download to ranking, with the Open Khipu Repository, a khipu drawing, a pattern, the top-k test and how to read p and q. Runs in under a minute.
+
 ## Input format
 
 Any CSV with one row per cord works:

@@ -1,6 +1,6 @@
 [project]
 name = "khipu-null"
-version = "0.1.1"
+version = "0.1.2"
 description = "Rank khipus against a reference pattern and test whether the match is chance, with structure-preserving permutation nulls."
 readme = "README.md"
 license = "MIT"
