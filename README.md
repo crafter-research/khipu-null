@@ -42,7 +42,7 @@ uvx khipu-null rank okr.csv santa-valley.yaml -o out --top 6
 
 ## Notebook
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/crafter-research/khipu-null/blob/main/examples/quipu-analysis.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/crafter-research/khipu-null/blob/main/examples/quipu-analysis.ipynb) [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/raillyhugo/analisis-de-quipus-khipus-en-python)
 
 [`examples/quipu-analysis.ipynb`](examples/quipu-analysis.ipynb), in Spanish: quipu analysis in Python from download to ranking, with the Open Khipu Repository, a khipu drawing, a pattern, the top-k test and how to read p and q. Runs in under a minute.
 
